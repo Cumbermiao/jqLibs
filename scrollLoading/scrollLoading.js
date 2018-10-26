@@ -12,7 +12,7 @@
             this.judgeBy = settings.container || this.container;
             this.distance = settings.distance;
             this.loadEvent = settings.loadEvent;
-            this.more = settings.more || true;
+            this.stopMore = settings.stopMore || true;
             this.outer.on('scroll', this.scrollHandle.bind(this));
             this.checkGetMore();
         },
@@ -28,13 +28,13 @@
         scrollHandle: function () {
             var judgeDistance = this.outer.scrollTop() + $(window).height();
             if ((true === this.more) && (judgeDistance + this.distance >= this.outer.height())) {
-                this.more = false;
+                this.stopMore = false;
                 this.loadEvent();
             }
         },
 
         off: function () {
-            this.more = true;
+            this.stopMore = true;
             this.outer.unbind('scroll');
         },
     };
